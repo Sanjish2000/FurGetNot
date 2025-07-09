@@ -25,3 +25,5 @@ uploads
 *.njsproj
 *.sln
 *.sw?
+# ignore env
+.env
