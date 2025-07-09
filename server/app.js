@@ -18,7 +18,7 @@ app.use(cookieParser())
 app.use('/uploads', express.static('uploads'));
 
 app.use(cors({
-    origin:"https://fur-get-not.vercel.app/",
+    origin:"https://furgetnot.onrender.com/",
     credentials: true,   
 }))
 
