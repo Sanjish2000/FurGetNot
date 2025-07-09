@@ -1,18 +1,24 @@
-// ✅ Firebase Admin ko import karo
 import admin from "firebase-admin";
+import dotenv from "dotenv";
 
-// ✅ Agar tu `.json` file import kar raha hai in ESM (like `type: module`),
-// to `createRequire` use karo
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
+dotenv.config();
 
-// ✅ JSON config file ko require karo
-const serviceAccount = require("./serviceAccount.json");
+const serviceAccount = {
+  type: process.env.FIREBASE_TYPE,
+  project_id: process.env.FIREBASE_PROJECT_ID,
+  private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
+  private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+  client_email: process.env.FIREBASE_CLIENT_EMAIL,
+  client_id: process.env.FIREBASE_CLIENT_ID,
+  auth_uri: process.env.FIREBASE_AUTH_URI,
+  token_uri: process.env.FIREBASE_TOKEN_URI,
+  auth_provider_x509_cert_url: process.env.FIREBASE_AUTH_PROVIDER_CERT_URL,
+  client_x509_cert_url: process.env.FIREBASE_CLIENT_CERT_URL,
+  universe_domain: process.env.FIREBASE_UNIVERSE_DOMAIN,
+};
 
-// ✅ Ab admin ka use karo (baad me karo, pehle define ho chuka hai upar)
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
 
-// ✅ admin ko export karo taaki kisi aur file me use ho sake
 export default admin;
