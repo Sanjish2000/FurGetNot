@@ -29,7 +29,7 @@ function Registor({ isOpen, onClose }) {
     try {
       setRegistration(true); // ✅ show loading
       const res = await axios.post(
-        "http://localhost:5000/api/user/register",
+        "https://furgetnot.onrender.com/api/user/register",
         formData,
         {
           headers: {

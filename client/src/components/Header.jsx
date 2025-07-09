@@ -10,7 +10,7 @@ function Header() {
   const [currentTime, setCurrentTime] = useState("");
   const getUsername = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/user/me", {
+      const res = await axios.get("https://furgetnot.onrender.com/api/user/me", {
         withCredentials: true,
       });
       setusername(res.data.user.name);

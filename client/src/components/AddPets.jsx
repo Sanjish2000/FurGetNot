@@ -46,7 +46,7 @@ function AddPets({ isOpen, onClose }) {
       form.append("image", formData.image);
        
       const res = await axios.post(
-        "http://localhost:5000/api/pets/addpet",
+        "https://furgetnot.onrender.com/api/pets/addpet",
         form,
         {
           headers: {

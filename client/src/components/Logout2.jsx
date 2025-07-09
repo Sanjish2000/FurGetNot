@@ -11,7 +11,7 @@ function Logout2() {
      
   const logOuthandler = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/user/logout", {
+      const res = await axios.get("https://furgetnot.onrender.com/api/user/logout", {
         withCredentials: true,
       });
 
