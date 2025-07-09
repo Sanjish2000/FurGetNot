@@ -28,7 +28,7 @@ function Login({ isOpen, onClose }) {
     e.preventDefault();
     try {
       const res = await axios.post(
-        " https://furgetnot.onrender.com/api/user/login",
+        "https://furgetnot.onrender.com/api/user/login",
         formData,
         {
           headers: {
