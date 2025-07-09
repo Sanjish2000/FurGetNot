@@ -57,7 +57,7 @@ function Login({ isOpen, onClose }) {
       const idToken = await user.getIdToken();
 
       const res = await axios.post(
-        " https://furgetnot.onrender.com/api/auth/google",
+        "https://furgetnot.onrender.com/api/auth/google",
         { idToken },
         { withCredentials: true }
       );
