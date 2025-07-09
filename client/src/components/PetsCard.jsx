@@ -12,7 +12,7 @@ function PetsCard({ id, name, type, age, breed, image,onDelete,onUpdate  }) {
     
   const deletPet = async () => {
     try {
-      const res = await axios.delete(`https://furgetnot.onrender.com/api/pets/${id}`, {
+      const res = await axios.delete(` https://furgetnot.onrender.com/api/pets/${id}`, {
         withCredentials: true,
       });
       if (res.data.success) {
@@ -36,7 +36,7 @@ function PetsCard({ id, name, type, age, breed, image,onDelete,onUpdate  }) {
       <div className="w-full md:w-1/4 md:ml-15 bg-orange-50 rounded-2xl shadow-lg overflow-hidden mt-5 ml-1 flex-wrap modal-animation">
         <div className="relative w-full h-80 ">
           <img
-            src={`https://furgetnot.onrender.com/uploads/${image}?${Date.now()}`} // ✅ use dynamic image
+            src={` https://furgetnot.onrender.com/${image}?${Date.now()}`} // ✅ use dynamic image
             alt={name}
             className="w-full h-full object-cover opacity-80"
           />

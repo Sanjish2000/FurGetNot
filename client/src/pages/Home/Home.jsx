@@ -18,7 +18,7 @@ function Home() {
     const fetchPets = async () => {
       try {
         const res = await axios.get(
-          "https://furgetnot.onrender.com/api/pets/getallpets",
+          " https://furgetnot.onrender.com/api/pets/getallpets",
           {
             withCredentials: true,
           }

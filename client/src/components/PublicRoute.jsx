@@ -10,7 +10,7 @@ function PublicRoute({ children }) {
     const verify = async () => {
       try {
         const res = await axios.get(
-          "https://furgetnot.onrender.com/api/user/verify-token",
+          " https://furgetnot.onrender.com/api/user/verify-token",
           {
             withCredentials: true,
           }

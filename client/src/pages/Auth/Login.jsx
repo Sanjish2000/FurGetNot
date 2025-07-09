@@ -28,7 +28,7 @@ function Login({ isOpen, onClose }) {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "https://furgetnot.onrender.com/api/user/login",
+        " https://furgetnot.onrender.com/api/user/login",
         formData,
         {
           headers: {
@@ -57,7 +57,7 @@ function Login({ isOpen, onClose }) {
       const idToken = await user.getIdToken();
 
       const res = await axios.post(
-        "https://furgetnot.onrender.com/api/auth/google",
+        " https://furgetnot.onrender.com/api/auth/google",
         { idToken },
         { withCredentials: true }
       );
