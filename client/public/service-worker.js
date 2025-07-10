@@ -8,6 +8,20 @@ self.addEventListener("activate", function (event) {
 
 self.addEventListener("fetch", function (event) {
   event.respondWith(
-    fetch(event.request).catch(() => caches.match(event.request))
+    fetch(event.request)
+      .catch(() => {
+        return caches.match(event.request)
+          .then((cachedResponse) => {
+            if (cachedResponse) {
+              return cachedResponse;
+            } else {
+              return new Response("Offline and no cache found", {
+                status: 503,
+                statusText: "Service Unavailable"
+              });
+            }
+          });
+      })
   );
 });
+
