@@ -39,7 +39,6 @@ function Login({ isOpen, onClose }) {
       );
       if (res.data.success) {
         setloading(true);
-       
         setTimeout(() => {
           navigate("/home");
           toast.success(res.data.message);
