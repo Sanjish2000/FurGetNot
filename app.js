@@ -13,7 +13,7 @@ import Checkout from "./routers/checkoutRoute.js";
 import paymentRoutes from "./routers/paymentRoutes.js";
 // import cron from "node-cron";
 // import { checkAndSendReminders } from "./Utils/checkReminders.js";
-import './reminderScheduler.js';
+import "./reminderScheduler.js";
 
 const app = express();
 dotenv.config();
@@ -25,7 +25,7 @@ app.use("/uploads", express.static("uploads"));
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.CLIENT_URL,
     credentials: true,
   })
 );
