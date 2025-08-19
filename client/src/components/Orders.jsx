@@ -18,7 +18,7 @@ function Orders() {
 
   const fetchOrders = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/order/getallorders", {
+      const res = await axios.get("https://furgetnot.onrender.com/api/order/getallorders", {
         withCredentials: true,
       });
 

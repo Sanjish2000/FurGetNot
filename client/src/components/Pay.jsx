@@ -37,7 +37,7 @@ function Pay() {
       try {
         // 1. Create Razorpay Order from backend
         const res = await axios.post(
-          "http://localhost:5000/api/payment/order",
+          "https://furgetnot.onrender.com/api/payment/order",
           {
             amount: Math.round(totalAmount * 100)
           }
@@ -72,7 +72,7 @@ function Pay() {
             };
 
             const saveRes = await axios.post(
-              "http://localhost:5000/api/order/create",
+              "https://furgetnot.onrender.com/api/order/create",
               orderPayload,
               { withCredentials: true }
             );
@@ -120,7 +120,7 @@ function Pay() {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/order/create",
+        "https://furgetnot.onrender.com/api/order/create",
         orderPayload,
         { withCredentials: true }
       );

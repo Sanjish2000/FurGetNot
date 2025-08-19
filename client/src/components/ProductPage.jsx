@@ -39,7 +39,7 @@ function ProductPage() {
 
   const getFood = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/food/all", {
+      const res = await axios.get("https://furgetnot.onrender.com/api/food/all", {
         withCredentials: true,
       });
       setStore(res.data.foodList);

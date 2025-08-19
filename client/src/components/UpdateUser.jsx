@@ -36,7 +36,7 @@ function UpdateUser({ isOpen, onClose, user, onUpdate }) {
 
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/admin/user/update/${user._id}`, // 🎯 Use user._id from props
+        `https://furgetnot.onrender.com/api/admin/user/update/${user._id}`, // 🎯 Use user._id from props
         formData,
         {
           headers: { "Content-Type": "application/json" },

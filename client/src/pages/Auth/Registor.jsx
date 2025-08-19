@@ -32,8 +32,8 @@ function Registor({ isOpen, onClose }) {
 
       const apiUrl =
         role === "admin"
-          ? "http://localhost:5000/api/admin/regitration/admin"
-          : "http://localhost:5000/api/user/register";
+          ? "https://furgetnot.onrender.com/api/admin/regitration/admin"
+          : "https://furgetnot.onrender.com/api/user/register";
 
       const res = await axios.post(apiUrl, formData, {
         headers: {

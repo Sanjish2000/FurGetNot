@@ -47,7 +47,7 @@ const AddPetFood = () => {
         data.append("image", formData.image); // ✅ append file
       }
 
-      const res = await axios.post("http://localhost:5000/api/food/add", data, {
+      const res = await axios.post("https://furgetnot.onrender.com/api/food/add", data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

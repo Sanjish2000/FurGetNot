@@ -33,7 +33,7 @@ function UpdatePet({ isOpen, onClose, pet, onUpdate }) {
       if (formData.image) form.append("image", formData.image);
 
       const res = await axios.put(
-        `http://localhost:5000/api/pets/update/${pet.id}`,
+        `https://furgetnot.onrender.com/api/pets/update/${pet.id}`,
         form,
         {
           headers: { "Content-Type": "multipart/form-data" },

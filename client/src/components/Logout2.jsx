@@ -13,8 +13,8 @@ function Logout2() {
     const role = localStorage.getItem("role"); // check role
     const logoutURL =
       role === "admin"
-        ? "http://localhost:5000/api/admin/logout"
-        : "http://localhost:5000/api/user/logout";
+        ? "https://furgetnot.onrender.com/api/admin/logout"
+        : "https://furgetnot.onrender.com/api/user/logout";
 
     try {
       const res = await axios.get(logoutURL, {

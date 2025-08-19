@@ -27,7 +27,7 @@ function Admin() {
 
   const getAllPet = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/admin/gettpet", {
+      const res = await axios.get("https://furgetnot.onrender.com/api/admin/gettpet", {
         withCredentials: true,
       });
       setPet(res.data.data);
@@ -38,7 +38,7 @@ function Admin() {
 
   const getAllUser = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/admin/alluser", {
+      const res = await axios.get("https://furgetnot.onrender.com/api/admin/alluser", {
         withCredentials: true,
       });
       setUser(res.data.users);
@@ -49,7 +49,7 @@ function Admin() {
 
   const fetchStoreData = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/food/all", {
+      const res = await axios.get("https://furgetnot.onrender.com/api/food/all", {
         withCredentials: true,
       });
       setStoreData(res.data.foodList);
@@ -74,7 +74,7 @@ function Admin() {
   const fetchOrders = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/admin/orders/status",
+        "https://furgetnot.onrender.com/api/admin/orders/status",
         { withCredentials: true }
       );
       setOrder(res.data.orders || []);
@@ -87,7 +87,7 @@ function Admin() {
   const handleDeletePet = async (id) => {
     if (!window.confirm("Are you sure you want to delete this pet?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/admin/pet/${id}`, {
+      await axios.delete(`https://furgetnot.onrender.com/api/admin/pet/${id}`, {
         withCredentials: true,
       });
       setPet((prev) => prev.filter((p) => p._id !== id));
@@ -106,7 +106,7 @@ function Admin() {
     if (!window.confirm("Are you sure you want to delete this user?")) return;
     try {
       // If your backend route is /user/delete/:id, replace the URL below accordingly.
-      await axios.delete(`http://localhost:5000/api/admin/user/delete/${id}`, {
+      await axios.delete(`https://furgetnot.onrender.com/api/admin/user/delete/${id}`, {
         withCredentials: true,
       });
       setUser((prev) => prev.filter((u) => u._id !== id));
@@ -138,7 +138,7 @@ function Admin() {
       return;
     try {
       const res = await axios.delete(
-        `http://localhost:5000/api/food/product/${id}`,
+        `https://furgetnot.onrender.com/api/food/product/${id}`,
         {
           withCredentials: true,
         }
@@ -258,7 +258,7 @@ function Admin() {
                   <td className="px-4 py-2">
                     {item.image ? (
                       <img
-                        src={`http://localhost:5000/uploads/${
+                        src={`https://furgetnot.onrender.com/uploads/${
                           item.image
                         }?${Date.now()}`}
                         alt={item.name}

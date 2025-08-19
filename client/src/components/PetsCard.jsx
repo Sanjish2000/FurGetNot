@@ -13,7 +13,7 @@ function PetsCard({ id, name, type, age, breed, image, onDelete, onUpdate }) {
 
   const deletePet = async () => {
     try {
-      const res = await axios.delete(`http://localhost:5000/api/pets/${id}`, {
+      const res = await axios.delete(`https://furgetnot.onrender.com/api/pets/${id}`, {
         withCredentials: true,
       });
       if (res.data.success) {
@@ -28,7 +28,7 @@ function PetsCard({ id, name, type, age, breed, image, onDelete, onUpdate }) {
   const fetchReminders = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/reminders/gett/reminder",
+        "https://furgetnot.onrender.com/api/reminders/gett/reminder",
         { withCredentials: true }
       );
       if (res.data.success) {
@@ -46,7 +46,7 @@ function PetsCard({ id, name, type, age, breed, image, onDelete, onUpdate }) {
   const handleMarkDone = async (reminderId) => {
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/reminders/done/${reminderId}`,
+        `https://furgetnot.onrender.com/api/reminders/done/${reminderId}`,
         {},
         { withCredentials: true }
       );
@@ -70,7 +70,7 @@ function PetsCard({ id, name, type, age, breed, image, onDelete, onUpdate }) {
       <div className="w-full md:w-1/4 bg-orange-50 rounded-2xl shadow-lg overflow-hidden mt-5 ml-1 flex-wrap modal-animation">
         <div className="relative w-full h-80">
           <img
-            src={`http://localhost:5000/uploads/${image}?${Date.now()}`}
+            src={`https://furgetnot.onrender.com/uploads/${image}?${Date.now()}`}
             alt={name}
             className="w-full h-full object-cover opacity-80"
           />

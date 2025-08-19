@@ -21,8 +21,8 @@ function Header() {
     const role = localStorage.getItem("role");
     const url =
       role === "admin"
-        ? "http://localhost:5000/api/admin/me"
-        : "http://localhost:5000/api/user/me";
+        ? "https://furgetnot.onrender.com/api/admin/me"
+        : "https://furgetnot.onrender.com/api/user/me";
 
     try {
       const res = await axios.get(url, { withCredentials: true });
@@ -37,7 +37,7 @@ function Header() {
   const getReminder = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/reminders/gett/reminder",
+        "https://furgetnot.onrender.com/api/reminders/gett/reminder",
         {
           withCredentials: true,
         }

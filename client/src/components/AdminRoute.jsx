@@ -16,7 +16,7 @@ function AdminRoute({ children }) {
           return;
         }
 
-        const res = await axios.get("http://localhost:5000/api/admin/verify-token", {
+        const res = await axios.get("https://furgetnot.onrender.com/api/admin/verify-token", {
           withCredentials: true,
         });
 
