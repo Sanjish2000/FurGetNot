@@ -5,13 +5,13 @@ import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener("load", function () {
-    navigator.serviceWorker.register("/service-worker.js").then(function (registration) {
-      console.log("Service Worker registered with scope:", registration.scope);
-    }, function (err) {
-      console.log("Service Worker registration failed:", err);
-    });
+// main.jsx or index.jsx
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/service-worker.js")
+      .then((reg) => console.log("SW registered"))
+      .catch((err) => console.log("SW registration failed:", err));
   });
 }
 

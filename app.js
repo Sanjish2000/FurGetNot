@@ -25,7 +25,7 @@ app.use("/uploads", express.static("uploads"));
 
 app.use(
   cors({
-    origin: "https://furgetnot-3.onrender.com",
+    origin: "https://furgetnot-3.onrender.com/",
     credentials: true,
   })
 );
