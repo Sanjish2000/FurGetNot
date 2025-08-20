@@ -25,7 +25,7 @@ app.use("/uploads", express.static("uploads"));
 
 app.use(
   cors({
-    origin: "https://furgetnot-front.netlify.app/",
+    origin: "https://fur-get-not-git-main-sanjishs-projects.vercel.app",
     credentials: true,
   })
 );
