@@ -119,14 +119,21 @@ export const login = async (req, res) => {
 
 export const logout = async (req, res) => {
   try {
-    return res.status(201).cookie("token", "", { maxAge: 0 }).json({
-      success: true,
-      message: "logout successfully",
-    });
+    return res
+      .status(200)
+      .clearCookie("token", {
+        httpOnly: true,
+        secure: true, // Agar HTTPS use kar rahe ho (Vercel/Render pe hamesha use karo)
+        sameSite: "None", // Cross-site cookies allow karne ke liye
+      })
+      .json({
+        success: true,
+        message: "Logout successfully",
+      });
   } catch (error) {
     return res.status(500).json({
       success: false,
-      message: `internal server ${error}`,
+      message: `internal server error ${error}`,
     });
   }
 };

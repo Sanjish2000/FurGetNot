@@ -152,16 +152,17 @@ export const getAdminProfile = async (req, res) => {
 
 export const adminLogout = async (req, res) => {
   try {
-    // Clear the token cookie
-    res.cookie("token", "", {
-      httpOnly: true,
-      expires: new Date(0), // Expire now
-    });
-
-    return res.status(200).json({
-      success: true,
-      message: "Admin logged out successfully",
-    });
+    return res
+      .status(200)
+      .clearCookie("token", {
+        httpOnly: true,
+        secure: true,
+        sameSite: "None",
+      })
+      .json({
+        success: true,
+        message: "Admin logged out successfully",
+      });
   } catch (error) {
     console.error("Logout Error:", error);
     return res.status(500).json({
@@ -257,7 +258,6 @@ export const getAllPetData = async (req, res) => {
   }
 };
 
-
 export const getAllOrders = async (req, res) => {
   try {
     const orders = await Order.find().sort({ createdAt: -1 }); // latest first
@@ -277,7 +277,6 @@ export const getAllOrders = async (req, res) => {
   }
 };
 
-
 export const deletePet = async (req, res) => {
   try {
     const { id } = req.params;
@@ -285,19 +284,19 @@ export const deletePet = async (req, res) => {
     const deletedPet = await Pet.findByIdAndDelete(id);
 
     if (!deletedPet) {
-      return res.status(404).json({ success: false, message: 'Pet not found' });
+      return res.status(404).json({ success: false, message: "Pet not found" });
     }
 
     res.json({
       success: true,
-      message: 'Pet deleted successfully',
-      deletedPet
+      message: "Pet deleted successfully",
+      deletedPet,
     });
   } catch (error) {
-    console.error('Error deleting pet:', error);
+    console.error("Error deleting pet:", error);
     res.status(500).json({
       success: false,
-      message: 'Server error while deleting pet'
+      message: "Server error while deleting pet",
     });
   }
 };
@@ -309,23 +308,24 @@ export const deleteUser = async (req, res) => {
     const deletedUser = await User.findByIdAndDelete(id);
 
     if (!deletedUser) {
-      return res.status(404).json({ success: false, message: 'User not found' });
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
     }
 
     res.json({
       success: true,
-      message: 'User deleted successfully',
-      deletedUser
+      message: "User deleted successfully",
+      deletedUser,
     });
   } catch (error) {
-    console.error('Error deleting Usser', error);
+    console.error("Error deleting Usser", error);
     res.status(500).json({
       success: false,
-      message: 'Server error while deleting User'
+      message: "Server error while deleting User",
     });
   }
 };
-
 
 export const updateUser = async (req, res) => {
   try {
