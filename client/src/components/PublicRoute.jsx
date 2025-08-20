@@ -30,7 +30,7 @@ function PublicRoute({ children }) {
   if (isAuth === null) return null; // Loader lagana ho to yahan lagao
 
   // ✅ Agar login hai to /home redirect karo
-  return isAuth ? <Navigate to="/home" replace /> : children;
+  return isAuth ? <Navigate to="/" replace /> : children;
 }
 
 export default PublicRoute;
