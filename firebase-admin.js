@@ -1,20 +1,21 @@
-// ✅ Firebase Admin ko import karo
 import admin from "firebase-admin";
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
 
 let serviceAccount;
 
 if (process.env.FIREBASE_SERVICE_ACCOUNT) {
-  // ✅ Render / Production ke liye
+  // ✅ Render/Production ke liye (stringified JSON env var)
   serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
 } else {
   // ✅ Local development ke liye
-  serviceAccount = require("./serviceAccount.json");
+  serviceAccount = JSON.parse(
+    Buffer.from(process.env.FIREBASE_SERVICE_ACCOUNT_LOCAL, "base64").toString("utf-8")
+  );
 }
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-});
+if (!admin.apps.length) {
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+  });
+}
 
 export default admin;
