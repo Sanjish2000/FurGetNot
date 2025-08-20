@@ -94,6 +94,7 @@ export const login = async (req, res) => {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "None",
+      path: "/", 
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -124,7 +125,9 @@ export const logout = async (req, res) => {
       .clearCookie("token", {
         httpOnly: true,
         secure: true, // Agar HTTPS use kar rahe ho (Vercel/Render pe hamesha use karo)
-        sameSite: "None", // Cross-site cookies allow karne ke liye
+        sameSite: "None",
+        path: "/", 
+         // Cross-site cookies allow karne ke liye
       })
       .json({
         success: true,

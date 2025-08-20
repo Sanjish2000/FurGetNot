@@ -1,8 +1,3 @@
-import { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
-import axios from "axios";
-import toast from "react-hot-toast";
-
 function PublicRoute({ children }) {
   const [isAuth, setIsAuth] = useState(null);
 
@@ -11,14 +6,12 @@ function PublicRoute({ children }) {
       try {
         const res = await axios.get(
           "https://furgetnot.onrender.com/api/user/verify-token",
-          {
-            withCredentials: true,
-          }
+          { withCredentials: true }
         );
         if (res.data.success) {
-          setIsAuth(true); // user is logged in
+          setIsAuth(true);
         } else {
-          setIsAuth(false); // user not logged in
+          setIsAuth(false);
         }
       } catch (err) {
         setIsAuth(false);
@@ -27,10 +20,8 @@ function PublicRoute({ children }) {
 
     verify();
   }, []);
-  if (isAuth === null) return null; // Loader lagana ho to yahan lagao
 
-  // ✅ Agar login hai to /home redirect karo
-  return isAuth ? <Navigate to="/" replace /> : children;
+  if (isAuth === null) return null;
+
+  return isAuth ? <Navigate to="/home" replace /> : children;
 }
-
-export default PublicRoute;
