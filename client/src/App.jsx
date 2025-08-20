@@ -25,25 +25,25 @@ function App() {
         <Route
           path="/"
           element={
-            
+            <PublicRoute>
               <Landing />
-         
+         </PublicRoute>
           }
         />
         <Route
           path="/login"
           element={
-           
+           <PublicRoute>
               <Landing/>
-           
+           </PublicRoute>
           }
         />
         <Route
           path="/registration"
           element={
-           
+           <PublicRoute>
               <Landing />
-           
+           </PublicRoute>
           }
         />
 
