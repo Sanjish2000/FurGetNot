@@ -9,7 +9,7 @@ function About() {
   const getReminders = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/reminders/gett/reminder",
+        "https://furgetnot.onrender.com/api/reminders/gett/reminder",
         { withCredentials: true }
       );
 
