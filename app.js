@@ -25,7 +25,7 @@ app.use("/uploads", express.static("uploads"));
 
 app.use(
   cors({
-    origin: "https://furgetnot-3.onrender.com/",
+    origin: "https://fur-get-not.vercel.app/",
     credentials: true,
   })
 );
