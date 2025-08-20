@@ -1,13 +1,11 @@
-import  {User}  from "../models/user.js";
+import { User } from "../models/user.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
-
-
 export const registration = async (req, res) => {
   try {
-//    console.log(req.body);
-   
+    //    console.log(req.body);
+
     const { name, email, password } = req.body;
     //
     //  console.log("Received Data:", req.body);
@@ -30,16 +28,15 @@ export const registration = async (req, res) => {
     }
 
     // 3. Hash password
-    const saltRounds=10
-    const hashedPassword = await bcrypt.hash(password,saltRounds);
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
 
     // 4. Create new user
-   const newUser = await User.create({
-   name,
-   email,
-   password: hashedPassword,  // match your schema field "passwords"
-});;
-   
+    const newUser = await User.create({
+      name,
+      email,
+      password: hashedPassword, // match your schema field "passwords"
+    });
 
     // 5. Return success response
     return res.status(201).json({
@@ -49,12 +46,9 @@ export const registration = async (req, res) => {
         id: newUser._id,
         name: newUser.name,
         email: newUser.email,
-        createdAt: newUser.createdAt
-      }
-      
+        createdAt: newUser.createdAt,
+      },
     });
-    
-
   } catch (error) {
     console.error("Registration Error:", error);
     return res.status(500).json({
@@ -64,12 +58,11 @@ export const registration = async (req, res) => {
   }
 };
 
-// login controller 
+// login controller
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // 🔹 Validate
     if (!email || !password) {
       return res.status(400).json({
         success: false,
@@ -77,7 +70,6 @@ export const login = async (req, res) => {
       });
     }
 
-    // 🔹 Check user
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(401).json({
@@ -86,7 +78,6 @@ export const login = async (req, res) => {
       });
     }
 
-    // 🔹 Compare password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(401).json({
@@ -95,58 +86,50 @@ export const login = async (req, res) => {
       });
     }
 
-    // 🔹 Generate JWT
-    const token = jwt.sign(
-      { userID: user._id },
-      process.env.SECRET_KEY,
-      { expiresIn: "7d" }
-    );
-
-    // 🔹 Set JWT as cookie
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // true on HTTPS
-      sameSite: "Lax", // CSRF protection
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    const token = jwt.sign({ userID: user._id }, process.env.SECRET_KEY, {
+      expiresIn: "7d",
     });
 
-    // 🔹 Send success response
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "Lax",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+
     return res.status(200).json({
       success: true,
       message: "Login successful",
+      token, // ✅ Added
+      role: "user", // ✅ Added
       user: {
         id: user._id,
         name: user.name,
-        email: user.email
-      }
+        email: user.email,
+      },
     });
-
   } catch (error) {
     console.error("Login Error:", error);
     return res.status(500).json({
       success: false,
-      message: "Server error during login"
+      message: "Server error during login",
     });
   }
 };
 
-export const logout= async (req,res)=>{
+export const logout = async (req, res) => {
   try {
-     
-     
-    return res.status(201).cookie("token","",{maxAge:0}).json({
-      success:true,
-      message:"logout successfully"
-    })
-
-  } catch (error) { 
+    return res.status(201).cookie("token", "", { maxAge: 0 }).json({
+      success: true,
+      message: "logout successfully",
+    });
+  } catch (error) {
     return res.status(500).json({
       success: false,
       message: `internal server ${error}`,
     });
   }
-}
-
+};
 
 export const getMyProfile = async (req, res) => {
   try {
@@ -160,7 +143,9 @@ export const getMyProfile = async (req, res) => {
     const user = await User.findById(decoded.userID).select("-password");
 
     if (!user) {
-      return res.status(404).json({ success: false, message: "User not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
     }
 
     res.status(200).json({

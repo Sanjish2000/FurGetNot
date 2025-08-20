@@ -30,21 +30,18 @@ function Login({ isOpen, onClose }) {
     try {
       setLoading(true);
 
-      // Select API based on role
       const apiUrl =
         role === "admin"
-          ? "https://furgetnot.onrender.com/api/admin/login/admin"
-          : "https://furgetnot.onrender.com/api/user/login";
+          ? "http://localhost:5000/api/admin/login/admin"
+          : "http://localhost:5000/api/user/login";
 
       const res = await axios.post(apiUrl, formData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true, // Needed for cookie
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
       });
 
       if (res.data.success) {
-        // ✅ Save to localStorage
+        // ✅ Save in localStorage
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("role", res.data.role);
         localStorage.setItem(
@@ -52,16 +49,13 @@ function Login({ isOpen, onClose }) {
           res.data.user?.name || res.data.admin?.name
         );
 
-        // toast.success(res.data.message);
+        toast.success(res.data.message);
 
-        // ✅ Delay thoda badhao to let ProtectedRoute settle
         setTimeout(() => {
-          toast.success(res.data.message); 
           window.location.href = res.data.role === "admin" ? "/admin" : "/home";
-        }, 500); // Use window.location.href to FORCE page reload
+        }, 500);
       }
     } catch (error) {
-      alert(error)
       toast.error(error?.response?.data?.message || "Login failed");
     } finally {
       setLoading(false);
@@ -75,27 +69,24 @@ function Login({ isOpen, onClose }) {
       const idToken = await user.getIdToken();
 
       const res = await axios.post(
-        "https://furgetnot.onrender.com/api/auth/google",
+        "http://localhost:5000/api/auth/google",
         { idToken },
         { withCredentials: true }
       );
 
       if (res.data.success) {
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("role", "user");
+        localStorage.setItem("role", res.data.role);
         localStorage.setItem("name", res.data.user?.name);
 
-        // toast.success(res.data.message || "Google login successful");
+        toast.success(res.data.message);
 
         setTimeout(() => {
-          toast.success(res.data.message || "Google login successful");
           navigate("/home");
-        }, 1500);
+        }, 500);
       }
     } catch (error) {
-      console.log(error);
       toast.error("Google login failed");
-      console.error(error);
     }
   };
 
