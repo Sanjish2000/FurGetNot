@@ -32,8 +32,8 @@ function Login({ isOpen, onClose }) {
 
       const apiUrl =
         role === "admin"
-          ? "http://localhost:5000/api/admin/login/admin"
-          : "http://localhost:5000/api/user/login";
+          ? "https://furgetnot.onrender.com/api/admin/login/admin"
+          : "https://furgetnot.onrender.com/api/user/login";
 
       const res = await axios.post(apiUrl, formData, {
         headers: { "Content-Type": "application/json" },
@@ -69,7 +69,7 @@ function Login({ isOpen, onClose }) {
       const idToken = await user.getIdToken();
 
       const res = await axios.post(
-        "http://localhost:5000/api/auth/google",
+        "https://furgetnot.onrender.com/api/auth/google",
         { idToken },
         { withCredentials: true }
       );
