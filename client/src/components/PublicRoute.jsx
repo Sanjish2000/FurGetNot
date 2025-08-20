@@ -1,3 +1,8 @@
+import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
+
 function PublicRoute({ children }) {
   const [isAuth, setIsAuth] = useState(null);
 
@@ -25,3 +30,5 @@ function PublicRoute({ children }) {
 
   return isAuth ? <Navigate to="/home" replace /> : children;
 }
+
+export default PublicRoute;
