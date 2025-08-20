@@ -125,7 +125,7 @@ function App() {
         <Route
           path="/admin"
           element={
-            <AdminRoute>
+            <AdminRoute allowedRole="admin">
               <Admin />
               </AdminRoute>
           }
@@ -133,7 +133,7 @@ function App() {
         <Route
           path="/addpetfood"
           element={
-            <AdminRoute>
+            <AdminRoute allowedRole="admin">
               <AddPetFood />
               </AdminRoute>
           }

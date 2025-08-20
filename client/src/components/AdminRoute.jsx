@@ -11,21 +11,25 @@ function AdminRoute({ children }) {
       try {
         const role = localStorage.getItem("role");
 
+        // 🚫 If not admin in localStorage → reject immediately
         if (role !== "admin") {
           setIsAuth(false);
           return;
         }
 
-        const res = await axios.get("https://furgetnot.onrender.com/api/admin/verify-token", {
-          withCredentials: true,
-        });
+        // ✅ Verify with backend
+        const res = await axios.get(
+          "https://furgetnot.onrender.com/api/admin/verify-token",
+          { withCredentials: true }
+        );
 
-        if (res.data.success) {
+        if (res.data.success && role === "admin") {
           setIsAuth(true);
         } else {
           setIsAuth(false);
         }
       } catch (err) {
+        console.error("AdminRoute Error:", err);
         setIsAuth(false);
       }
     };
@@ -33,8 +37,7 @@ function AdminRoute({ children }) {
     verify();
   }, []);
 
-  if (isAuth === null) return null; // 🔄 Optionally show a loader
-
+  if (isAuth === null) return null; // 🔄 loader (spinner) dikha sakte ho
   return isAuth ? children : <Navigate to="/" replace />;
 }
 
